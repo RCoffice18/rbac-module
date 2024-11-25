@@ -57,3 +57,5 @@ const enum SuccessCode {
   REPORTS_SAVED = "REPORTS_SAVED",
   DASHBOARD_REFRESHED = "DASHBOARD_REFRESHED",
 }
+
+export { SuccessCode };

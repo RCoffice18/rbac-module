@@ -1,4 +1,6 @@
+import mongoose, { Document } from "mongoose";
 import { TDepartment, TFileType, TResource, TRole } from "../types";
+import { VerificationEnum } from "../enums/verify.enum";
 
 export interface IResourceMetaData {
   resources: TResource[];
@@ -13,26 +15,44 @@ export interface IFileMetadata {
   timestamp: string;
 }
 
-export interface IUser {
-  id: string;
+export interface IUserPreferences {
+  enable2FA: boolean;
+  emailNotification: boolean;
+  twoFactorSecret?: string;
+}
+
+export interface IUser extends Document {
   username: string;
   email: string;
   password: string;
   role: TRole[];
   isActive: boolean;
   department: TDepartment[];
-  phoneNo: string;
-  address: string;
-  state: string;
-  country: string;
   createdAt: Date;
   updatedAt: Date;
+  userPreference: IUserPreferences;
+  comparePassword(value: string): Promise<boolean>;
+}
+
+export interface ISession extends Document {
+  userId: mongoose.Types.ObjectId;
+  userAgent?: string;
+  expiresAt: Date;
+  createdAt: Date;
+}
+
+export interface IVerificationCode extends Document {
+  userId: mongoose.Types.ObjectId;
+  code: string;
+  type: VerificationEnum;
+  expiresAt: Date;
+  createdAt: Date;
 }
 
 export interface ILoginUser {
-  username?: string;
-  email?: string;
+  email: string;
   password: string;
+  userAgent: string;
 }
 
 export interface IRegisterUser {
@@ -40,5 +60,4 @@ export interface IRegisterUser {
   email: string;
   password: string;
   confirmPassword: string;
-  hasAgreedToTerms: boolean;
 }
