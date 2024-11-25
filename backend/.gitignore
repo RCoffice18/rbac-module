@@ -1,0 +1,44 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Build and Output Directories
+dist/
+build/
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE and Editor Files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Jest Coverage
+coverage/
+
+# Debugging Files
+*.stackdump
+
+# Temporary Files
+*.tmp
+*.temp
+*.cache
+
+# OS Specific Files
+Thumbs.db
+.DS_Store
