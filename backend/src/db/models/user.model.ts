@@ -28,9 +28,9 @@ const userSchema = new Schema<IUser>(
       enum: ["USER", "ADMIN", "EDITOR"],
       default: ["USER"],
     },
-    isActive: {
+    isEmailVerified: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     department: {
       type: [String],

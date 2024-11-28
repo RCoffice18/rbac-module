@@ -42,6 +42,9 @@ const httpConfig = () => ({
   SERVICE_UNAVAILABLE: 503,
   GATEWAY_TIMEOUT: 504,
   DISK_FULL: 507,
+  CONFLICT: 409,
+  UNPROCESSABLE_ENTITY: 422,
+  TOO_MANY_REQUESTS: 429,
 });
 
 export const HTTPSTATUS = httpConfig();

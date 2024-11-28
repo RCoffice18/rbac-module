@@ -6,7 +6,22 @@ const endpoints = {
       register: `${config.BASE_URL_VERSION}/auth/register`,
       login: `${config.BASE_URL_VERSION}/auth/login`,
       logout: `${config.BASE_URL_VERSION}/auth/logout`,
+      verifyEmail: `${config.BASE_URL_VERSION}/auth/verify/email`,
+      confirmAccount: `${config.APP_ORIGIN}${config.BASE_URL_VERSION}/auth/confirm-account`,
+      forgetPassword: `${config.BASE_URL_VERSION}/auth/password/forget`,
+      resetPassword: `${config.BASE_URL_VERSION}/auth/password/reset`,
       refreshToken: `${config.BASE_URL_VERSION}/auth/refresh-token`,
+    },
+    SESSIONS: {
+      getAll: `${config.BASE_URL_VERSION}/session/all`,
+      get: `${config.BASE_URL_VERSION}/session/`,
+      delete: `${config.BASE_URL_VERSION}/session/:id`,
+    },
+    MFA: {
+      setup: `${config.BASE_URL_VERSION}/mfa/setup`,
+      verifySetup: `${config.BASE_URL_VERSION}/mfa/verify`,
+      revoke: `${config.BASE_URL_VERSION}/mfa/revoke`,
+      verifyLogin: `${config.BASE_URL_VERSION}/mfa/verify-login`,
     },
     USERS: {
       getAllUsers: `${config.BASE_URL_VERSION}/users`,

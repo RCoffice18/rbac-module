@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // Email validation schema
-export const emailSchema = z.string().email("Invalid email address");
+export const emailSchema = z.string().trim().email().min(1).max(255);
 
 // Password validation schema
 export const passwordSchema = z
@@ -11,11 +11,12 @@ export const passwordSchema = z
   .regex(/[a-z]/, "Password must contain at least one lowercase letter")
   .regex(/[0-9]/, "Password must contain at least one number")
   .regex(/[@$!%*?&]/, "Password must contain at least one special character");
+// Verification Code Validation schema
+export const verificationCodeZSchema = z.string().trim().min(1).max(25);
 
-// Registration schema
 export const registerSchema = z
   .object({
-    username: z.string().min(3, "Username must be at least 3 characters long"),
+    username: z.string().trim().min(3).max(255),
     email: emailSchema,
     password: passwordSchema,
     confirmPassword: passwordSchema,
@@ -25,9 +26,28 @@ export const registerSchema = z
     path: ["confirmPassword"],
   });
 
-// Login schema
 export const loginSchema = z.object({
-  email: emailSchema.optional(),
+  email: emailSchema,
   password: passwordSchema,
+  userAgent: z.string().optional(),
+});
+
+export const verificationEmailSchema = z.object({
+  code: verificationCodeZSchema,
+});
+
+export const resetPasswordSchema = z.object({
+  password: passwordSchema,
+  verificationCode: verificationCodeZSchema,
+});
+
+export const verifyMfaSchema = z.object({
+  code: z.string().trim().min(1).max(6),
+  secretKey: z.string().trim().min(1),
+});
+
+export const verifyMfaForLoginSchema = z.object({
+  code: z.string().trim().min(1).max(6),
+  email: z.string().trim().email().min(1),
   userAgent: z.string().optional(),
 });

@@ -1,3 +1,4 @@
+import { Response } from "express";
 import mongoose, { Document } from "mongoose";
 import { TDepartment, TFileType, TResource, TRole } from "../types";
 import { VerificationEnum } from "../enums/verify.enum";
@@ -26,7 +27,7 @@ export interface IUser extends Document {
   email: string;
   password: string;
   role: TRole[];
-  isActive: boolean;
+  isEmailVerified: boolean;
   department: TDepartment[];
   createdAt: Date;
   updatedAt: Date;
@@ -52,7 +53,7 @@ export interface IVerificationCode extends Document {
 export interface ILoginUser {
   email: string;
   password: string;
-  userAgent: string;
+  userAgent?: string;
 }
 
 export interface IRegisterUser {
@@ -60,4 +61,21 @@ export interface IRegisterUser {
   email: string;
   password: string;
   confirmPassword: string;
+  userAgent?: string;
+}
+
+export interface IResetPassword {
+  password: string;
+  verificationCode: string;
+}
+
+export interface ICookiesPayload {
+  res: Response;
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface IJwtPayload {
+  userId: string;
+  sessionId: string;
 }

@@ -32,6 +32,17 @@ const appConfig = () => ({
     REFRESH_SECRET: getEnv("JWT_REFRESH_SECRET"),
     REFRESH_EXPIRES_IN: getEnv("JWT_REFRESH_EXPIRES_IN", "30d"),
   },
+
+  RESEND: {
+    MAIL_SENDER: getEnv("MAIL_SENDER"),
+    API_KEY: getEnv("RESEND_API_KEY"),
+  },
+  GMAIL: {
+    HOST: getEnv("GMAIL_HOST", "smtp.gmail.com"),
+    PORT: getEnv("GMAIL_PORT", "465"),
+    USER: getEnv("GMAIL_USER"),
+    PASS: getEnv("GMAIL_PASS"),
+  },
 });
 
 export const config = appConfig();

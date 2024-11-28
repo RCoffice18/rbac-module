@@ -1,3 +1,5 @@
+import { ISession, IUser } from "../interface";
+
 export type TAuth =
   | "LOGIN"
   | "REGISTER"
@@ -5,6 +7,16 @@ export type TAuth =
   | "REFRESHTOKEN"
   | "RECONNECT";
 export type TRole = "ADMIN" | "USER" | "MODERATOR";
+
+export type TAccessPayload = {
+  userId: IUser["_id"];
+  sessionId: ISession["_id"];
+};
+
+export type TRefreshPayload = {
+  sessionId: ISession["_id"];
+};
+
 export type TDepartment =
   | "IT"
   | "CUSTOMER_SUPPORT"
@@ -20,24 +32,28 @@ export type TDepartment =
   | "QUALITY_ASSURANCE"
   | "ADMINISTRATION"
   | "RESEARCH";
+
 export type TProject =
   | "CONSTRUCTION"
   | "SOFTWARE"
   | "MARKETING"
   | "EDUCATION"
   | "RESEARCH";
+
 export type TResource =
   | "USER"
   | "MESSAGE"
   | "NOTIFICATION"
   | "TASK"
   | "PROJECT";
+
 export type TDocument =
   | "BLUEPRINT"
   | "REPORT"
   | "INVOICE"
   | "CONTRACT"
   | "PRESENTATION";
+  
 export type TFileType =
   // Image extensions
   | "png"
@@ -64,3 +80,11 @@ export type TFileType =
   | "zip"
   | "rar"
   | string;
+
+export type TMail = {
+  to: string | string[];
+  subject: string;
+  text: string;
+  html: string;
+  from?: string;
+};

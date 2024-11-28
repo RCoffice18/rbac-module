@@ -8,6 +8,8 @@ import { errorHandler } from "./middlewares/error.middleware";
 import { HTTPSTATUS } from "./config/http.config";
 import { asyncHandler } from "./middlewares/async.middleware";
 import authRoutes from "./modules/auth/auth.routes";
+import passport from "./middlewares/passport.middleware";
+import sessionRoutes from "./modules/sessions/session.routes";
 
 const app = express();
 
@@ -21,6 +23,7 @@ app.use(
 );
 
 app.use(cookieParser());
+app.use(passport.initialize());
 
 app.post(
   "/",
@@ -32,6 +35,7 @@ app.post(
 );
 
 app.use(authRoutes);
+app.use(sessionRoutes);
 
 app.use(errorHandler);
 
